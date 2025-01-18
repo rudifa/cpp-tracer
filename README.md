@@ -20,9 +20,11 @@ build % make
 build % cmake --build . # same as make
 ```
 
-### run the `dronesim` application
+### run the `cpp-tracer` application
 
 ```
-cpp-tracer % build/dronesim
+cpp-tracer % build/cpp-tracer
 `
 ```
+
+This will update the file `build/Tracer.log`.
