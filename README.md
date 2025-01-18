@@ -2,14 +2,27 @@
 
 A C++ project.
 
-## Building
+Contains the class `Tracer` that can be used to trace the execution of a program.
 
-```bash
-g++ -std=c++11 main.cpp -o cpp-tracer
+Function `bank_demo` is a simple example of how to use `class Tracer`.
+
+### build cmake files
+
+```
+cpp-tracer % mkdir -p build && cd build
+build % cmake ..
 ```
 
-## Running
+### build the `cpp-tracer` application with cmake
 
-```bash
-./cpp-tracer
+```
+build % make
+build % cmake --build . # same as make
+```
+
+### run the `dronesim` application
+
+```
+cpp-tracer % build/dronesim
+`
 ```
