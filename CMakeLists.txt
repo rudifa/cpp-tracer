@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Add the executable
-add_executable(cpp-tracer main.cpp)
+add_executable(cpp-tracer main.cpp bank-demo.cpp tracer.cpp)
 
 # Include directories
 target_include_directories(cpp-tracer PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
