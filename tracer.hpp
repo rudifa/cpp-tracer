@@ -41,15 +41,13 @@ class Tracer
 {
    public:
     static int indent;
-    static std::ofstream &getLogFile();
+    static std::ofstream& getLogFile();
     static std::chrono::high_resolution_clock::time_point operationStartTime;
 
-    template <typename F>
-    Tracer(F &&func, const char *funcName)
-        : className(get_class_name(func)),
-          functionName(funcName),
-          startTime(std::chrono::high_resolution_clock::now())
+    explicit Tracer(const char* prettyFunction)
+        : startTime(std::chrono::high_resolution_clock::now())
     {
+        parseFunctionName(prettyFunction);
         trace(true);
         indent++;
     }
@@ -67,7 +65,9 @@ class Tracer
 
     void trace(bool enter);
 
+    void parseFunctionName(const char* prettyFunction);
+
     long long get_nanoseconds();
 };
 
-#define TRACE Tracer tracer([&]() {}, __FUNCTION__)
+#define TRACE Tracer tracer(__PRETTY_FUNCTION__)
