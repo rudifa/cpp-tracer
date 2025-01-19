@@ -37,4 +37,4 @@ plot-log.py build/Tracer.log
 
 The python script `plot-log.py` creates a mathplotlib plot of the log file `Tracer.log`.
 
-![Tracer Log Plot](img/cpp-tracer-1.png)
+![Tracer Log Plot](img/cpp-tracer-plot.png)
