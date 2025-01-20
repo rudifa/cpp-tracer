@@ -108,11 +108,16 @@ class FunctionCallGraph:
         ax.spines['left'].set_visible(True)
 
         for level, functions in functions_at_levels.items():
+            print(f"level: {level}, functions: {functions}")
+            # Shorten strings like "PIDController::compute" to "PIDC::compute"
+            # shortened_functions = [
+            #     self._shorten_function_name(func) for func in functions]
             y_pos = level + 1
             x_pos = 0.01
             for func_name in functions:
                 color = colors[stack_levels[func_name]]
-                text = ax.text(x_pos, y_pos, func_name, color=color,
+                short_func_name = self._shorten_function_name(func_name)
+                text = ax.text(x_pos, y_pos, short_func_name, color=color,
                                ha='left', va='bottom', fontweight='bold',
                                transform=ax.get_yaxis_transform())
 
@@ -121,9 +126,16 @@ class FunctionCallGraph:
                 x_pos += bbox.width / ax.figure.dpi / ax.figure.get_figwidth() + 0.01
 
         ax.set_xlabel('Time (ns)')
-        ax.set_title('Function Call Graph')
+        ax.set_title(f'Function Call Graph : {self.log_file}')
         ax.set_ylim(0, max_stack_depth + 1)
         plt.subplots_adjust(left=0.025, right=0.975, top=0.95, bottom=0.1)
+
+    def _shorten_function_name(self, func_name: str) -> str:
+        parts = func_name.split('::')
+        if len(parts) > 1:
+            class_name = ''.join(char for char in parts[0] if char.isupper())
+            return f"{class_name}::{parts[1]}"
+        return func_name
 
 
 if __name__ == '__main__':
